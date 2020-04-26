@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head></h:head> 
+<body> 
+	<f:view>
+		<h:form>			
+			<h1><h:outputText value="REGISTRAR EMPLEADO" /></h1>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="id:" />
+				<h:inputText value="#{empleadoBean.emp.idEmployee}" />
+				
+				<h:outputLabel value="Nombre:" />
+				<h:inputText value="#{empleadoBean.emp.nombre}" />
+				
+				<h:outputLabel value="Apellido:" />
+				<h:inputText value="#{empleadoBean.emp.apellido}" />
+				
+				<h:outputLabel value="Area:" />
+				<h:inputText value="#{empleadoBean.emp.area}" />
+				
+				<f:facet name="footer">
+					<h:commandButton action="#{empleadoBean.guardarEmpleado()}" value="Guardar" />
+					<h:commandButton action="#{empleadoBean.editarEmpleado()}" value="Modificar" />
+					<h:commandButton action="#{empleadoBean.eliminarEmpleado()}" value="Borrar" />
+				</f:facet>						
+			</h:panelGrid>	
+			
+			<br/>
+			<h1><h:outputText value="LISTADO DE EMPLEADOS" /></h1>
+			<h:dataTable border="1" rules="all" value="#{empleadoBean.lse}" var="item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="id" />
+					</f:facet>				
+					<h:outputText value="#{item.idEmployee}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="nombre" />
+					</f:facet>				
+					<h:outputText value="#{item.nombre}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="apellido" />
+					</f:facet>				
+					<h:outputText value="#{item.apellido}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="area" />
+					</f:facet>				
+					<h:outputText value="#{item.area}" />
+				</h:column>
+				<h:column>
+					<h:commandButton action="#{empleadoBean.cargar(item.idEmployee,item.apellido,item.area,item.nombre)}" value="cargar" />
+				</h:column>					
+			</h:dataTable>					
+		</h:form>
+	</f:view>
+</body> 
+</html>
